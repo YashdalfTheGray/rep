@@ -1,0 +1,50 @@
+{
+  "name": "rep",
+  "version": "1.0.0",
+  "description": "Random Exercise Planner",
+  "main": "src/index.ts",
+  "scripts": {
+    "build-ts": "tsc",
+    "build-sass": "sass --no-source-map src/main.scss docs/main.css",
+    "watch-ts": "tsc --watch",
+    "watch-sass": "sass --no-source-map --watch src/main.scss docs/main.css",
+    "build": "npm run build-ts && npm run build-sass",
+    "start": "npm run build",
+    "watch": "concurrently -c cyan,magenta \"npm:watch-ts\" \"npm:watch-sass\"",
+    "build-sass-prod": "sass --no-source-map --style compressed src/main.scss docs/main.css",
+    "build-ts-prod": "tsc && uglifyjs --compress --output docs/main.js -- docs/main.js",
+    "build-prod": "npm run build-sass-prod && npm run build-ts-prod",
+    "clean": "npx rimraf docs/*.css docs/*.js docs/*.map",
+    "prepare": "husky install",
+    "prettier": "prettier --write .",
+    "lint-staged": "lint-staged"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/YashdalfTheGray/rep.git"
+  },
+  "keywords": [
+    "exercise",
+    "planning"
+  ],
+  "author": "Yash Kulshrestha",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/YashdalfTheGray/rep/issues"
+  },
+  "homepage": "https://github.com/YashdalfTheGray/rep#readme",
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json,css,md}": [
+      "prettier --write"
+    ]
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.0.1",
+    "prettier": "^3.0.3",
+    "sass": "^1.69.3",
+    "typescript": "^5.2.2",
+    "uglify-js": "^3.17.4"
+  }
+}
